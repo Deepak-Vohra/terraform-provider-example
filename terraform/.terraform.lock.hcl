@@ -5,6 +5,6 @@ provider "terraform-example.com/exampleprovider/example" {
   version     = "1.0.0"
   constraints = "~> 1.0.0"
   hashes = [
-    "h1:ixlbswjN043oq87KmDH8sJrMiKdstn+q0LnuNXMGOCc=",
+    "h1:LWg4PC1y6EDbIKJ+0aVBIsSxJ5Nkr2Yf2+Sy+VbotKw=",
   ]
 }
