@@ -76,7 +76,7 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 	fmt.Println()
 
       //  Map the response body to resource schema attributes
-
+      // Update state
 	return nil
 }
 
