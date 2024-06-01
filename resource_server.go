@@ -30,7 +30,7 @@ func resourceServer() *schema.Resource {
 	}
 }
 
-func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
+func resourceServerCreate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
 	environment_id := d.Get("environment_id").(string)
 
 	client := resty.New()
@@ -56,7 +56,7 @@ func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
 	return resourceServerRead(d, m)
 }
 
-func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+func resourceServerRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
 	environment_id := d.Id()
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetAuthToken("eyJhbGciOiJFUzI").Get("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
@@ -80,7 +80,7 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
        //Implementation is optional
 	environment_id := d.Get("environment_id").(string) //unique resource identifier
         name := d.Get("name").(string)
@@ -106,7 +106,7 @@ func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
 	return resourceServerRead(d, m)
 }
 
-func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
+func resourceServerDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
 	environment_id := d.Id()
 
 	d.SetId("")
