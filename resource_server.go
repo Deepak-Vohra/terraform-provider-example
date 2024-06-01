@@ -61,10 +61,16 @@ func resourceServerRead(ctx context.Context, d *schema.ResourceData, m interface
 	environment_id := d.Id()
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetAuthToken("eyJhbGciOiJFUzI").Get("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
-	if err != nil {
-          // Convert a Go error to Diagnostics
-          return diag.FromErr(err)
-         }
+	
+	// Collect Errors & Warnings in a slice type
+  var diags diag.Diagnostics
+	// Return formatted error  
+    if err != nil {
+        diags = append(diags, diag.Errorf("unexpected: %s", err)...)
+	      return diags
+    }
+     
+	
 	 
 	// Explore response object (optional)
 	fmt.Println("Response Info:")
