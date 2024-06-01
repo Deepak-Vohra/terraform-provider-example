@@ -35,9 +35,10 @@ func resourceServerCreate(ctx context.Context, d *schema.ResourceData, m interfa
 
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetHeader("Content-Type", "application/json").SetBody("{'repository': 'git@github.com:Deepak-Vohra/greetings.git@master','profile': 'Greetings Project','files': [{'mode': 0600,'path': 'config.json','contents': '{}'}]}").SetAuthToken("eyJhbGciOi").Post("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id + "/initialize")
-	if err != nil {
-		log.Fatal(err)
-	}
+	 if err != nil {
+          // Convert a Go error to Diagnostics
+          return diag.FromErr(err)
+         }
 
 	// Explore response object (optional)
 	fmt.Println("Response Info:")
@@ -61,8 +62,9 @@ func resourceServerRead(ctx context.Context, d *schema.ResourceData, m interface
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetAuthToken("eyJhbGciOiJFUzI").Get("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
 	if err != nil {
-		log.Fatal(err)
-	}
+          // Convert a Go error to Diagnostics
+          return diag.FromErr(err)
+         }
 	 
 	// Explore response object (optional)
 	fmt.Println("Response Info:")
@@ -88,8 +90,9 @@ func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, m interfa
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetHeader("Content-Type", "application/json").SetBody("{'name': 'updated env','title': 'updated env'}").SetAuthToken("eyJhbGciOiJFUzI").Patch("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
 	if err != nil {
-		log.Fatal(err)
-	}
+          // Convert a Go error to Diagnostics
+          return diag.FromErr(err)
+         }
 
 	// Explore response object
 	fmt.Println("Response Info:")
@@ -113,8 +116,9 @@ func resourceServerDelete(ctx context.Context, d *schema.ResourceData, m interfa
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetAuthToken("eyJhbGciOi").Delete("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
 	if err != nil {
-		log.Fatal(err)
-	}
+          // Convert a Go error to Diagnostics
+          return diag.FromErr(err)
+         }
 
 	// Explore response object
 	fmt.Println("Response Info:")
