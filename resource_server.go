@@ -11,7 +11,7 @@ import (
 
 func resourceServer() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceServerCreate,
+		CreateContext: resourceServerCreate,
 		Read:   resourceServerRead,
 		Update: resourceServerUpdate,
 		Delete: resourceServerDelete,
