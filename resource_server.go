@@ -14,9 +14,9 @@ import (
 func resourceServer() *schema.Resource {
 	return &schema.Resource{
 		CreateContext: resourceServerCreate,
-		Read:   resourceServerRead,
-		Update: resourceServerUpdate,
-		Delete: resourceServerDelete,
+		ReadContext:   resourceServerRead,
+		UpdateContext: resourceServerUpdate,
+		DeleteContext: resourceServerDelete,
 
 		Schema: map[string]*schema.Schema{
 			"environment_id": &schema.Schema{
