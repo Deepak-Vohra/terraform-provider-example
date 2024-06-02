@@ -57,7 +57,7 @@ func resourceServerCreate(ctx context.Context, d *schema.ResourceData, m interfa
 	//Obtain id of new environment from the response Body and set in the resource's state
 	d.SetId("new environment id")
 	
-	return resourceServerRead(d, m)
+	return resourceServerRead(ctx, d, m)
 }
 
 func resourceServerRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
@@ -115,7 +115,7 @@ func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, m interfa
 	fmt.Println()
 
 	//Call Read to update state with the updated resource
-	return resourceServerRead(d, m)
+	return resourceServerRead(ctx, d, m)
 }
 
 func resourceServerDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
