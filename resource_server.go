@@ -94,7 +94,7 @@ func resourceServerRead(ctx context.Context, d *schema.ResourceData, m interface
 func resourceServerUpdate(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics  {
        //Implementation is optional
 	environment_id := d.Get("environment_id").(string) //unique resource identifier
-        name := d.Get("name").(string)
+        //name := d.Get("name").(string)
 	 
 	client := resty.New()
 	resp, err := client.R().SetHeader("Accept", "application/json").SetHeader("Content-Type", "application/json").SetBody("{'name': 'updated env','title': 'updated env'}").SetAuthToken("eyJhbGciOiJFUzI").Patch("https://ca-1.platform.sh/api/projects/zis3mqzwuqnu4/environments/" + environment_id)
